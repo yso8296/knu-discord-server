@@ -18,6 +18,6 @@ public class NoticeController {
         String link = "https://see.knu.ac.kr/content/board/notice.html";
         String createdAt = "2025-01-20 05:46";
         String author = "시스템도서위원회";
-        noticeService.sendNotice(category, title, link, createdAt, author);
+        //noticeService.sendNotice(category, title, link, createdAt, author);
     }
 }

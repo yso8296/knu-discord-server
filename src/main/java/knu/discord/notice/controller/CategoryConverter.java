@@ -19,9 +19,6 @@ public class CategoryConverter implements AttributeConverter<Category, String> {
     // DB 값 -> Enum 변환
     @Override
     public Category convertToEntityAttribute(String dbData) {
-        if (dbData == null || dbData.isEmpty()) {
-            return Category.ETC; // 기본값 처리
-        }
         return Category.fromDisplayName(dbData); // 한글 -> Enum 변환
     }
 }

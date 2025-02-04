@@ -12,9 +12,7 @@ import java.util.Map;
 @Service
 public class NoticeService {
 
-    private final String url = "https://discordapp.com/api/webhooks/1333034749513699328/ZUq-vGUSfMmDLUwneNjGDKaa-YsWtUFpbBfQjoFF70quyyiS0CJjlZiUqXQqaT4nh25f"; // Discord Webhook URL
-
-    public void sendNotice(String category, String title, String link, String createdAt, String author) {
+    public void sendNotice(String category, String title, String link, String createdAt, String author, String webHookUrl) {
         // Embed 메시지 구성
         Map<String, Object> embed = Map.of(
                 "title", "[" + category + "] " + title,
@@ -34,16 +32,18 @@ public class NoticeService {
                 "embeds", new Map[]{embed}
         );
 
-        send(payload);
+        send(payload, webHookUrl);
     }
 
-    private void send(Map<String, Object> payload) {
+    private void send(Map<String, Object> payload, String webHookUrl) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(payload, headers);
 
-        restTemplate.postForObject(url, entity, String.class);
+        // Discord Webhook URL
+        //String url = "https://discordapp.com/api/webhooks/1333034749513699328/ZUq-vGUSfMmDLUwneNjGDKaa-YsWtUFpbBfQjoFF70quyyiS0CJjlZiUqXQqaT4nh25f";
+        restTemplate.postForObject(webHookUrl, entity, String.class);
     }
 }
