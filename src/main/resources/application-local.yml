@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:discord
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:mysql://localhost:3306/mydb?useSSL=false&serverTimezone=Asia/Seoul
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: password123
   jpa:
     hibernate:
       ddl-auto: create

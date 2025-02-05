@@ -1,10 +1,10 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/mydb?useSSL=false&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://knu-notice-db.ctu6g48uwdhd.ap-northeast-2.rds.amazonaws.com:3306/mydb?useSSL=false&serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: password123
+    username: admin
+    password: yso3865def!
   jpa:
     hibernate:
       ddl-auto: create
-    show-sql: false
+    show-sql: true
