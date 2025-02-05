@@ -28,7 +28,7 @@ public class NoticeService {
         );
 
         Map<String, Object> payload = Map.of(
-                "content", ":loudspeaker: UPDATE",
+                "content", ":loudspeaker: NEW",
                 "embeds", new Map[]{embed}
         );
 

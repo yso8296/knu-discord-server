@@ -17,11 +17,14 @@ public class ScheduleNoticeService {
 
     private final NoticeService noticeService;
 
+    // 서버의 리다이렉션 기본 주소 (환경에 맞게 수정)
+    private final String serverBaseUrl = "http://localhost:8080/api/v1/knu";
+
     /**
      * 5분마다 DB에서 send가 N인 공지사항을 조회하여 각 공지사항의 카테고리 웹훅으로 전송하고,
      * 전송 후 send를 Y로 업데이트합니다.
      */
-    @Scheduled(fixedRate = 300_000) // 300,000 ms = 5분
+    @Scheduled(fixedRate = 600_00) // 300,000 ms = 5분
     public void sendPendingNotices() {
         // send 값이 'N'인 공지사항 목록 조회
         List<Notice> pendingNotices = noticeRepository.findTop10BySendOrderByUploadDateAsc(Send.N);
@@ -35,8 +38,11 @@ public class ScheduleNoticeService {
             // Notice 엔티티에 작성자 필드가 없다면, 기본값 사용 (예: "작성자 미정")
             String author = "경북대학교 전자공학부";
 
+            // 실제 notice.getLink() 대신 서버 리다이렉션 URL 사용 (예: http://api/v1/knu/notice/1)
+            String redirectLink = serverBaseUrl + "/notice/" + notice.getId();
+
             // NoticeService의 sendNotice 함수를 호출하여 Discord 웹훅 전송
-            noticeService.sendNotice(categoryDisplay, notice.getTitle(), notice.getLink(), createdAt, author, webHookUrl);
+            noticeService.sendNotice(categoryDisplay, notice.getTitle(), redirectLink, createdAt, author, webHookUrl);
 
             // 전송 완료 후 send 값을 Y로 업데이트
             notice.setSend(Send.Y);
