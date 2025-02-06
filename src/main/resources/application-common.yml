@@ -1,0 +1,12 @@
+discord:
+  com-url: ${COM_URL}
+  cls-url: ${CLS_URL}
+  clg-url: ${CLG_URL}
+  job-url: ${JOB_URL}
+  sch-url: ${SCH_URL}
+  evt-url: ${EVT_URL}
+  etc-url: ${ETC_URL}
+  weekly-url: ${WEEKLY_URL}
+
+server:
+  redirect-url: ${REDIRECT_URL}
