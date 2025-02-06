@@ -1,9 +1,11 @@
 package knu.discord.notice.service;
 
+import knu.discord.notice.Category;
 import knu.discord.notice.Notice;
 import knu.discord.notice.Send;
 import knu.discord.notice.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,8 @@ public class ScheduleNoticeService {
     private final NoticeService noticeService;
 
     // 서버의 리다이렉션 기본 주소 (환경에 맞게 수정)
-    private final String serverBaseUrl = "http://localhost:8080/api/v1/knu/notice/";
+    @Value("${server.redirect-url}")
+    private String serverBaseUrl;
 
     /**
      * 5분마다 DB에서 send가 N인 공지사항을 조회하여 각 공지사항의 카테고리 웹훅으로 전송하고,
@@ -43,6 +46,7 @@ public class ScheduleNoticeService {
 
             // NoticeService의 sendNotice 함수를 호출하여 Discord 웹훅 전송
             noticeService.sendNotice(categoryDisplay, notice.getTitle(), redirectLink, createdAt, author, webHookUrl);
+            noticeService.sendNotice(categoryDisplay, notice.getTitle(), redirectLink, createdAt, author, Category.COM.getUrl());
 
             // 전송 완료 후 send 값을 Y로 업데이트
             notice.setSend(Send.Y);

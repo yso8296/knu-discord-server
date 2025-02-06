@@ -43,7 +43,6 @@ public class NoticeService {
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(payload, headers);
 
         // Discord Webhook URL
-        //String url = "https://discordapp.com/api/webhooks/1333034749513699328/ZUq-vGUSfMmDLUwneNjGDKaa-YsWtUFpbBfQjoFF70quyyiS0CJjlZiUqXQqaT4nh25f";
         restTemplate.postForObject(webHookUrl, entity, String.class);
     }
 }
