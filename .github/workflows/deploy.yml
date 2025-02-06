@@ -62,7 +62,7 @@ jobs:
           script: |
             docker stop knu-notice-server || true
             docker rm knu-notice-server || true
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
+            docker pull ***/knu-notice-server:latest
             docker run -d --name knu-notice-server -p 8080:8080 \
             -e REDIRECT_URL=${{ secrets.REDIRECT_URL }} \
             -e DB_URL=${{ secrets.DB_URL }} \
@@ -77,5 +77,6 @@ jobs:
             -e ETC_URL=${{ secrets.ETC_URL }} \
             -e WEEKLY_URL=${{ secrets.WEEKLY_URL }} \
             ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
+
       
        
