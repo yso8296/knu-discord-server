@@ -43,19 +43,21 @@ jobs:
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Docker 이미지 생성
-        run: docker build --build-arg REDIRECT_URL="${{ secrets.REDIRECT_URL }}" \
-          --build-arg DB_URL="${{ secrets.DB_URL }}" \
-          --build-arg DB_USERNAME="${{ secrets.DB_USERNAME }}" \
-          --build-arg DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
-          --build-arg COM_URL="${{ secrets.COM_URL }}" \
-          --build-arg CLS_URL="${{ secrets.CLS_URL }}" \
-          --build-arg CLG_URL="${{ secrets.CLG_URL }}" \
-          --build-arg JOB_URL="${{ secrets.JOB_URL }}" \
-          --build-arg SCH_URL="${{ secrets.SCH_URL }}" \
-          --build-arg EVT_URL="${{ secrets.EVT_URL }}" \
-          --build-arg ETC_URL="${{ secrets.ETC_URL }}" \
-          --build-arg WEEKLY_URL="${{ secrets.WEEKLY_URL }}" \
-          -t knu-notice-server .
+        run: |
+          docker build \
+            --build-arg REDIRECT_URL="${{ secrets.REDIRECT_URL }}" \
+            --build-arg DB_URL="${{ secrets.DB_URL }}" \
+            --build-arg DB_USERNAME="${{ secrets.DB_USERNAME }}" \
+            --build-arg DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
+            --build-arg COM_URL="${{ secrets.COM_URL }}" \
+            --build-arg CLS_URL="${{ secrets.CLS_URL }}" \
+            --build-arg CLG_URL="${{ secrets.CLG_URL }}" \
+            --build-arg JOB_URL="${{ secrets.JOB_URL }}" \
+            --build-arg SCH_URL="${{ secrets.SCH_URL }}" \
+            --build-arg EVT_URL="${{ secrets.EVT_URL }}" \
+            --build-arg ETC_URL="${{ secrets.ETC_URL }}" \
+            --build-arg WEEKLY_URL="${{ secrets.WEEKLY_URL }}" \
+            -t knu-notice-server .
 
       - name: Docker 이미지에 Tag 붙이기
         run: docker tag knu-notice-server ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
