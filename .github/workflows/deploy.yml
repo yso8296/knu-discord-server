@@ -7,6 +7,19 @@ on:
 
 jobs:
   deploy:
+    env:
+      REDIRECT_URL: ${{ secrets.REDIRECT_URL }}
+      DB_URL: ${{ secrets.DB_URL }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      COM_URL: ${{ secrets.COM_URL }}
+      CLS_URL: ${{ secrets.CLS_URL }}
+      CLG_URL: ${{ secrets.CLG_URL }}
+      JOB_URL: ${{ secrets.JOB_URL }}
+      SCH_URL: ${{ secrets.SCH_URL }}
+      EVT_URL: ${{ secrets.EVT_URL }}
+      ETC_URL: ${{ secrets.ETC_URL }}
+      WEEKLY_URL: ${{ secrets.WEEKLY_URL }}
     runs-on: ubuntu-latest
     steps:
       - name: Github Repository에 올린 파일들을 불러오기
