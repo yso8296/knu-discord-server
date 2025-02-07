@@ -35,10 +35,10 @@ public class ScheduleNoticeService {
         List<Notice> pendingNotices = noticeRepository.findTop10BySendOrderByUploadDateAsc(Send.N);
         for (Notice notice : pendingNotices) {
             // 카테고리 Enum에서 웹훅 URL 가져오기
-            String webHookUrl = System.getenv(notice.getCategory() + "_URL");
-            System.out.println(webHookUrl);
+            String webHookUrl = System.getenv(notice.getCategory().toString() + "_URL");
+            System.out.println("webhook" + webHookUrl);
             System.out.println(webhookUrlProperties.getClgUrl());
-            System.out.println(System.getenv("CLG_URL"));
+            System.out.println("env" + System.getenv("CLG_URL"));
             System.out.println("---------");
             // 카테고리 전송 시에는 한글 displayName 사용
             String categoryDisplay = notice.getCategory().getDisplayName();
