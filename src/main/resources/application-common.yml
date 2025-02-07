@@ -9,4 +9,4 @@ discord:
   weekly-url: ${WEEKLY_URL}
 
 server:
-  redirect-url: http://43.202.105.104/api/v1/knu/notice/
+  redirect-url: ${REDIRECT_URL}

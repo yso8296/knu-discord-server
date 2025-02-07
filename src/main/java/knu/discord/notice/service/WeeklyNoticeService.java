@@ -19,8 +19,8 @@ public class WeeklyNoticeService {
     private final NoticeRepository noticeRepository;
     private final NoticeService noticeService;
     private final WebhookUrlProperties webhookUrlProperties;
-    @Value("${server.redirect-url}")
-    private String serverBaseUrl;
+    //@Value("${server.redirect-url}")
+    private String serverBaseUrl = "http://43.202.105.104/api/v1/knu/notice/";
 
     /**
      * 매주 일요일 자정에 지난 일주일 간의 조회수가 가장 높은 공지사항 3개를 선정해 Discord 채널에 공지합니다.
