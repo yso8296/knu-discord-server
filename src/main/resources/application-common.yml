@@ -1,7 +1,7 @@
 discord:
   com-url: ${COM_URL}
   cls-url: ${CLS_URL}
-  clg: ${CLG_URL}
+  clg-url: ${CLG_URL}
   job-url: ${JOB_URL}
   sch-url: ${SCH_URL}
   evt-url: ${EVT_URL}

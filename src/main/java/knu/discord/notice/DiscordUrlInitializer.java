@@ -14,7 +14,7 @@ public class DiscordUrlInitializer {
     public void init() {
         Category.COM.setUrl(webhookUrlProperties.getComUrl());
         Category.CLS.setUrl(webhookUrlProperties.getClsUrl());
-        Category.CLG.setUrl(webhookUrlProperties.getClg());
+        Category.CLG.setUrl(webhookUrlProperties.getClgUrl());
         Category.JOB.setUrl(webhookUrlProperties.getJobUrl());
         Category.SCH.setUrl(webhookUrlProperties.getSchUrl());
         Category.EVT.setUrl(webhookUrlProperties.getEvtUrl());
