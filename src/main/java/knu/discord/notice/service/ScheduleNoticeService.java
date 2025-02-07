@@ -35,7 +35,7 @@ public class ScheduleNoticeService {
         List<Notice> pendingNotices = noticeRepository.findTop10BySendOrderByUploadDateAsc(Send.N);
         for (Notice notice : pendingNotices) {
             // 카테고리 Enum에서 웹훅 URL 가져오기
-            String webHookUrl = notice.getCategory().getUrl();
+            String webHookUrl = System.getenv(notice.getCategory() + "_URL");
             System.out.println(webHookUrl);
             System.out.println(webhookUrlProperties.getClgUrl());
             System.out.println(System.getenv("CLG_URL"));
