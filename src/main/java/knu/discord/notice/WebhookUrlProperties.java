@@ -11,7 +11,7 @@ public class WebhookUrlProperties {
 
     String comUrl;
     String clsUrl;
-    String clgUrl;
+    String clg;
     String jobUrl;
     String schUrl;
     String evtUrl;

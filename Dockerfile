@@ -6,7 +6,7 @@ ARG REDIRECT_URL \
     DB_PASSWORD \
     COM_URL \
     CLS_URL \
-    CLG_URL \
+    CLG \
     JOB_URL \
     SCH_URL \
     EVT_URL \
@@ -20,7 +20,7 @@ ENV SPRING_PROFILES_ACTIVE=prod \
     DB_PASSWORD=${DB_PASSWORD} \
     COM_URL=${COM_URL} \
     CLS_URL=${CLS_URL} \
-    CLG_URL=${CLG_URL} \
+    CLG=${CLG_URL} \
     JOB_URL=${JOB_URL} \
     SCH_URL=${SCH_URL} \
     EVT_URL=${EVT_URL} \
