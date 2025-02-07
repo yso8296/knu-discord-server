@@ -29,7 +29,7 @@ public class ScheduleNoticeService {
      * 5분마다 DB에서 send가 N인 공지사항을 조회하여 각 공지사항의 카테고리 웹훅으로 전송하고,
      * 전송 후 send를 Y로 업데이트합니다.
      */
-    @Scheduled(fixedRate = 60_000) // 300,000 ms = 5분
+    @Scheduled(fixedRate = 30_000) // 300,000 ms = 5분
     public void sendPendingNotices() {
         // send 값이 'N'인 공지사항 목록 조회
         List<Notice> pendingNotices = noticeRepository.findTop10BySendOrderByUploadDateAsc(Send.N);
@@ -38,7 +38,7 @@ public class ScheduleNoticeService {
             String webHookUrl = notice.getCategory().getUrl();
             System.out.println(webHookUrl);
             System.out.println(webhookUrlProperties.getClgUrl());
-            System.out.println("-------------");
+            System.out.println("---------");
             // 카테고리 전송 시에는 한글 displayName 사용
             String categoryDisplay = notice.getCategory().getDisplayName();
             // 작성일은 uploadDate를 문자열로 변환
