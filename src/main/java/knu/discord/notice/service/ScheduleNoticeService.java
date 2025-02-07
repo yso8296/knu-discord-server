@@ -38,6 +38,7 @@ public class ScheduleNoticeService {
             String webHookUrl = notice.getCategory().getUrl();
             System.out.println(webHookUrl);
             System.out.println(webhookUrlProperties.getClgUrl());
+            System.out.println(System.getenv("CLG_URL"));
             System.out.println("---------");
             // 카테고리 전송 시에는 한글 displayName 사용
             String categoryDisplay = notice.getCategory().getDisplayName();
