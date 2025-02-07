@@ -3,6 +3,7 @@ package knu.discord.notice.service;
 import knu.discord.notice.Category;
 import knu.discord.notice.Notice;
 import knu.discord.notice.Send;
+import knu.discord.notice.WebhookUrlProperties;
 import knu.discord.notice.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ public class ScheduleNoticeService {
     private final NoticeRepository noticeRepository;
 
     private final NoticeService noticeService;
+    private final WebhookUrlProperties webhookUrlProperties;
 
     // 서버의 리다이렉션 기본 주소 (환경에 맞게 수정)
     //@Value("${server.redirect-url}")
@@ -27,7 +29,7 @@ public class ScheduleNoticeService {
      * 5분마다 DB에서 send가 N인 공지사항을 조회하여 각 공지사항의 카테고리 웹훅으로 전송하고,
      * 전송 후 send를 Y로 업데이트합니다.
      */
-    @Scheduled(fixedRate = 300_000) // 300,000 ms = 5분
+    @Scheduled(fixedRate = 60_000) // 300,000 ms = 5분
     public void sendPendingNotices() {
         // send 값이 'N'인 공지사항 목록 조회
         List<Notice> pendingNotices = noticeRepository.findTop10BySendOrderByUploadDateAsc(Send.N);
@@ -35,6 +37,8 @@ public class ScheduleNoticeService {
             // 카테고리 Enum에서 웹훅 URL 가져오기
             String webHookUrl = notice.getCategory().getUrl();
             System.out.println(webHookUrl);
+            System.out.println(webhookUrlProperties.getClgUrl());
+            System.out.println("-------------");
             // 카테고리 전송 시에는 한글 displayName 사용
             String categoryDisplay = notice.getCategory().getDisplayName();
             // 작성일은 uploadDate를 문자열로 변환
