@@ -37,6 +37,7 @@ public class ScheduleNoticeService {
             // 카테고리 Enum에서 웹훅 URL 가져오기
             String webHookUrl = System.getenv(notice.getCategory().toString() + "_URL");
             System.out.println("webhook" + webHookUrl);
+            System.out.println("serverbaseurl: " + serverBaseUrl);
             System.out.println(webhookUrlProperties.getClgUrl());
             System.out.println("env" + System.getenv("CLG_URL"));
             System.out.println("---------");
