@@ -22,6 +22,11 @@ public class NoticeController {
 
     private final NoticeRepository noticeRepository;
 
+    @GetMapping("/test")
+    public String test() {
+        return "hello";
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Void> redirectNotice(@PathVariable("id") Long id) {
         System.out.println("asdwqdqwdwqdqw");
