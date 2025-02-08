@@ -19,7 +19,6 @@ public class ScheduleNoticeService {
     private final NoticeRepository noticeRepository;
 
     private final NoticeService noticeService;
-    private final WebhookUrlProperties webhookUrlProperties;
 
     // 서버의 리다이렉션 기본 주소 (환경에 맞게 수정)
     //@Value("${server.redirect-url}")
@@ -35,12 +34,7 @@ public class ScheduleNoticeService {
         List<Notice> pendingNotices = noticeRepository.findTop10BySendOrderByUploadDateAsc(Send.N);
         for (Notice notice : pendingNotices) {
             // 카테고리 Enum에서 웹훅 URL 가져오기
-            String webHookUrl = System.getenv(notice.getCategory().toString() + "_URL");
-            System.out.println("webhook" + webHookUrl);
-            System.out.println("serverbaseurl: " + serverBaseUrl);
-            System.out.println(webhookUrlProperties.getClgUrl());
-            System.out.println("env" + System.getenv("CLG_URL"));
-            System.out.println("---------");
+            String webHookUrl = notice.getCategory().getUrl();
             // 카테고리 전송 시에는 한글 displayName 사용
             String categoryDisplay = notice.getCategory().getDisplayName();
             // 작성일은 uploadDate를 문자열로 변환

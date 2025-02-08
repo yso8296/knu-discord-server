@@ -12,12 +12,12 @@ public class DiscordUrlInitializer {
 
     @PostConstruct
     public void init() {
-        Category.COM.setUrl(webhookUrlProperties.getComUrl());
-        Category.CLS.setUrl(webhookUrlProperties.getClsUrl());
-        Category.CLG.setUrl(webhookUrlProperties.getClgUrl());
-        Category.JOB.setUrl(webhookUrlProperties.getJobUrl());
-        Category.SCH.setUrl(webhookUrlProperties.getSchUrl());
-        Category.EVT.setUrl(webhookUrlProperties.getEvtUrl());
-        Category.ETC.setUrl(webhookUrlProperties.getEtcUrl());
+        Category.COM.setUrl(System.getenv("COM_URL"));
+        Category.CLS.setUrl(System.getenv("CLS_URL"));
+        Category.CLG.setUrl(System.getenv("CLG_URL"));
+        Category.JOB.setUrl(System.getenv("JOB_URL"));
+        Category.SCH.setUrl(System.getenv("SCH_URL"));
+        Category.EVT.setUrl(System.getenv("EVT_URL"));
+        Category.ETC.setUrl(System.getenv("ETC_URL"));
     }
 }
