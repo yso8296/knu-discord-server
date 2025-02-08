@@ -76,7 +76,10 @@ jobs:
             docker stop knu-notice-server || true
             docker rm knu-notice-server || true
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
-            docker run -d --name knu-notice-server -p 8080:8080 \
+            cd /home/ubuntu/
+            sudo rm -f .env 
+            echo "${{ secrets.ENV_VARS }}" | sudo tee .env > /dev/null
+            docker run -d --name knu-notice-server --env-file .env -p 8080:8080 \
             -e REDIRECT_URL="${{ secrets.REDIRECT_URL }}" \
             -e DB_URL="${{ secrets.DB_URL }}" \
             -e DB_USERNAME="${{ secrets.DB_USERNAME }}" \
