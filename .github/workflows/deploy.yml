@@ -78,7 +78,7 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
             cd /home/ubuntu/
             sudo touch .env 
-            echo "${{ secrets.ENV_VARS }}" | sudo tee .env > /dev/null
+            echo "${{ secrets.ENV_VARS }}" | tr -d '\r' | grep -v "DRONE_SSH_PREV_COMMAND_EXIT_CODE" | sudo tee .env > /dev/null
             docker run -d --name knu-notice-server --env-file .env -p 8080:8080 \
             -e REDIRECT_URL="${{ secrets.REDIRECT_URL }}" \
             -e DB_URL="${{ secrets.DB_URL }}" \
