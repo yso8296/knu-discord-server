@@ -17,13 +17,13 @@ import java.util.List;
 public class ScheduleNoticeService {
 
     private final NoticeRepository noticeRepository;
-    // "http://43.202.105.104/api/v1/knu/notice/"
+
     private final NoticeService noticeService;
     private final WebhookUrlProperties webhookUrlProperties;
 
     // 서버의 리다이렉션 기본 주소 (환경에 맞게 수정)
-    @Value("${server.redirect-url}")
-    private String serverBaseUrl;
+    //@Value("${server.redirect-url}")
+    private String serverBaseUrl = "http://43.202.105.104/api/v1/knu/notice/";
 
     /**
      * 5분마다 DB에서 send가 N인 공지사항을 조회하여 각 공지사항의 카테고리 웹훅으로 전송하고,
