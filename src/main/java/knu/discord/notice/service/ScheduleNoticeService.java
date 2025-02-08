@@ -26,7 +26,7 @@ public class ScheduleNoticeService {
 
     /**
      * 5분마다 DB에서 send가 N인 공지사항을 조회하여 각 공지사항의 카테고리 웹훅으로 전송하고,
-     * 전송 후 send를 Y로 업데이트합니다.
+     * 전송 후 send를 Y로 업데이트합니다.gg
      */
     @Scheduled(fixedRate = 100_000) // 300,000 ms = 5분
     public void sendPendingNotices() {
