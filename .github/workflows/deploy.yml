@@ -47,7 +47,7 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script_stop: true
           script: |
-            source ~/.bashrc
+            echo ${{ secrets.ENV_VARS }} > .env
             docker stop knu-notice-server || true
             docker rm knu-notice-server || true
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest

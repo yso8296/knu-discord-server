@@ -21,9 +21,8 @@ public class ScheduleNoticeService {
     private final NoticeService noticeService;
 
     // 서버의 리다이렉션 기본 주소 (환경에 맞게 수정)
-    @Value("${server.redirect-url}")
-    private String serverBaseUrl;
-    //"http://43.202.105.104:8080/api/v1/knu/notice/"
+    //@Value("${server.redirect-url}")
+    private String serverBaseUrl = "https://api.knu-notice.link/api/v1/knu/notice/";
     private final WebhookUrlProperties webhookUrlProperties;
 
     /**
