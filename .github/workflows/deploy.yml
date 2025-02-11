@@ -51,7 +51,7 @@ jobs:
             docker stop knu-notice-server || true
             docker rm knu-notice-server || true
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
-            docker run -d --name knu-notice-server --env-file .env -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
+            docker run -d --name knu-notice-server --env-file ./.env -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
           
       
        
