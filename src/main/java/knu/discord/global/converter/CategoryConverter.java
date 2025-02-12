@@ -1,4 +1,4 @@
-package knu.discord.notice.controller;
+package knu.discord.global.converter;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

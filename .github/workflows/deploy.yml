@@ -7,6 +7,22 @@ on:
 
 jobs:
   deploy:
+    env:
+      REDIRECT_URL: ${{ secrets.REDIRECT_URL }}
+      DB_URL: ${{ secrets.DB_URL }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      REDIS_HOST: ${{ secrets.REDIS_HOST }}
+      REDIS_PORT: $ {{ secrets.REDIS_PORT }}
+      COM_URL: ${{ secrets.COM_URL }}
+      CLS_URL: ${{ secrets.CLS_URL }}
+      CLG_URL: ${{ secrets.CLG_URL }}
+      JOB_URL: ${{ secrets.JOB_URL }}
+      SCH_URL: ${{ secrets.SCH_URL }}
+      EVT_URL: ${{ secrets.EVT_URL }}
+      ETC_URL: ${{ secrets.ETC_URL }}
+      WEEKLY_URL: ${{ secrets.WEEKLY_URL }}
+
     runs-on: ubuntu-latest
     steps:
       - name: Github Repository에 올린 파일들을 불러오기
@@ -18,10 +34,7 @@ jobs:
           distribution: temurin
           java-version: 17
 
-#      - name: application.yml 파일 만들기
-#        run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.yml
-
-      - name: 테스트 및 빌드하기
+      - name: 테스트 및 빌드하기x
         run: |
           chmod +x ./gradlew
           ./gradlew clean build -x test
@@ -30,8 +43,22 @@ jobs:
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Docker 이미지 생성
-        run:
-          docker build -t knu-notice-server .
+        run: |
+          docker build --build-arg REDIRECT_URL="${{ secrets.REDIRECT_URL }}" \
+          --build-arg DB_URL="${{ secrets.DB_URL }}" \
+          --build-arg DB_USERNAME="${{ secrets.DB_USERNAME }}" \
+          --build-arg DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
+          --build-arg REDIS_HOST="${{ secrets.REDIS_HOST }}" \
+          --build-arg REDIS_PORT="${{ secrets.REDIS_PORT }}" \
+          --build-arg COM_URL="${{ secrets.COM_URL }}" \
+          --build-arg CLS_URL="${{ secrets.CLS_URL }}" \
+          --build-arg CLG_URL="${{ secrets.CLG_URL }}" \
+          --build-arg JOB_URL="${{ secrets.JOB_URL }}" \
+          --build-arg SCH_URL="${{ secrets.SCH_URL }}" \
+          --build-arg EVT_URL="${{ secrets.EVT_URL }}" \
+          --build-arg ETC_URL="${{ secrets.ETC_URL }}" \
+          --build-arg WEEKLY_URL="${{ secrets.WEEKLY_URL }}" \
+          -t knu-notice-server .
 
       - name: Docker 이미지에 Tag 붙이기
         run: docker tag knu-notice-server ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
@@ -48,10 +75,9 @@ jobs:
           script_stop: true
           script: |
             echo "${{ secrets.ENV_VARS }}" | tr -d '\r' | sudo tee .env > /dev/null
-            docker stop knu-notice-server || true
-            docker rm knu-notice-server || true
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
-            docker run -d --name knu-notice-server --env-file ./.env -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/knu-notice-server:latest
+            docker-compose down || true
+            docker-compose pull || true
+            docker-compose up -d
           
       
        

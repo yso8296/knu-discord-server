@@ -7,7 +7,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @ConfigurationPropertiesScan
 @SpringBootApplication
-@EnableScheduling
 public class DiscordApplication {
 
 	public static void main(String[] args) {

@@ -3,6 +3,6 @@ spring:
     active: local
     group:
       local:
-        - local, common
+        - local, common, redis
       prod:
-        - prod, common
+        - prod, common, redis

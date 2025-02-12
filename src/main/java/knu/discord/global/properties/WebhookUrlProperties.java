@@ -1,4 +1,4 @@
-package knu.discord.notice;
+package knu.discord.global.properties;
 
 import lombok.Getter;
 import lombok.Setter;
