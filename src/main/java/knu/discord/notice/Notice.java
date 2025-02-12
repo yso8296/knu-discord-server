@@ -3,7 +3,7 @@ package knu.discord.notice;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import knu.discord.global.entity.BaseEntity;
-import knu.discord.notice.controller.CategoryConverter;
+import knu.discord.global.converter.CategoryConverter;
 import lombok.*;
 
 import java.time.LocalDate;

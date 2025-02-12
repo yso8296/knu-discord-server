@@ -2,7 +2,6 @@ package knu.discord.notice.controller;
 
 import knu.discord.notice.Notice;
 import knu.discord.notice.repository.NoticeRepository;
-import knu.discord.notice.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/knu/notice")
+@RequestMapping("/api/v1/knu/notice")
 public class NoticeController {
 
     private final NoticeRepository noticeRepository;
