@@ -18,7 +18,8 @@ public class NoticeSchedulerService {
     private final NoticeRepository noticeRepository;
 
     //@Value("${server.redirect-url}")
-    private String serverBaseUrl = "https://api.knu-notice.link/api/v1/knu/notice/";
+    //"https://api.knu-notice.link/api/v1/knu/notice/"
+    private String serverBaseUrl = System.getenv("REDIRECT_URL");
 
     /**
      * 5분마다 DB에서 send가 N인 공지사항을 조회하여 각 공지사항의 카테고리 웹훅으로 전송하고,
