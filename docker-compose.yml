@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  server:
+    image: ${DOCKERHUB_USERNAME}/knu-notice-server:latest
+    container_name: knu-notice-server
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      retries: 10
+
+
