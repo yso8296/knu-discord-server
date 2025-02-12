@@ -1,6 +1,7 @@
 package knu.discord.notice;
 
 import jakarta.annotation.PostConstruct;
+import knu.discord.global.properties.WebhookUrlProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

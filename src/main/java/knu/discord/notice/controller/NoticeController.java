@@ -2,7 +2,6 @@ package knu.discord.notice.controller;
 
 import knu.discord.notice.Notice;
 import knu.discord.notice.repository.NoticeRepository;
-import knu.discord.notice.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,15 +21,8 @@ public class NoticeController {
 
     private final NoticeRepository noticeRepository;
 
-    @GetMapping("/test")
-    public String test() {
-        return "hello";
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Void> redirectNotice(@PathVariable("id") Long id) {
-        System.out.println("asdwqdqwdwqdqw");
-        System.out.println("id : " + id);
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "공지사항을 찾을 수 없습니다."));
 

@@ -1,18 +1,16 @@
-package knu.discord.notice.service;
+package knu.discord.notice.util;
 
-import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
-@Service
-public class NoticeService {
+public final class NoticeUtil {
 
-    public void sendNotice(String category, String title, String link, String createdAt, String author, String webHookUrl) {
+    public static void sendNotice(String category, String title, String link, String createdAt, String author, String webHookUrl) {
         // Embed 메시지 구성
         Map<String, Object> embed = Map.of(
                 "title", "[" + category + "] " + title,
@@ -35,7 +33,7 @@ public class NoticeService {
         send(payload, webHookUrl);
     }
 
-    private void send(Map<String, Object> payload, String webHookUrl) {
+    private static void send(Map<String, Object> payload, String webHookUrl) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
