@@ -6,3 +6,5 @@ spring:
         - local, common, redis
       prod:
         - prod, common, redis
+      test:
+        - test, common, redis
