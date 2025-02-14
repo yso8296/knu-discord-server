@@ -21,10 +21,10 @@ public class Notice extends BaseEntity {
     private Long id;
 
     @NotNull
-    String title;
+    private String title;
 
     @NotNull
-    String link;
+    private String link;
 
     @NotNull
     private int visited;
