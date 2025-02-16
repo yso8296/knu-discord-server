@@ -23,9 +23,6 @@ import java.util.concurrent.Executors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-@Testcontainers
-@Import(RedisTestContainerConfig.class)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class RaceConditionTest {
 
     @Autowired
