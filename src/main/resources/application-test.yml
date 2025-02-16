@@ -10,7 +10,13 @@
 #
 #  # MySQL 데이터베이스 연결 설정
 #  datasource:
+#    url: jdbc:tc:mysql:8:///testdb
 #    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
-#    url: jdbc:tc:mysql:8.0.33://localhost:3306/testdb
 #    username: test
 #    password: test
+#
+#  # Redis 설정
+#  data:
+#    redis:
+#      host: localhost
+#      port: 6379

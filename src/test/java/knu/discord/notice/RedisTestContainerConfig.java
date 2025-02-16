@@ -9,7 +9,7 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-@Testcontainers
+//@Testcontainers
 public class RedisTestContainerConfig {
 
     /*private static final String REDIS_IMAGE = "redis:7.0.8-alpine";
@@ -30,7 +30,7 @@ public class RedisTestContainerConfig {
                 .toString());
     }*/
 
-    private static final String REDIS_IMAGE = "redis:latest";
+    /*private static final String REDIS_IMAGE = "redis:latest";
     private static final int REDIS_PORT = 6379;
     private static final String MYSQL_IMAGE = "mysql:8";
 
@@ -51,5 +51,5 @@ public class RedisTestContainerConfig {
     public static void overrideProps(DynamicPropertyRegistry registry){
         registry.add("redis.host", REDIS::getHost);
         registry.add("redis.port", () -> String.valueOf(REDIS.getMappedPort(REDIS_PORT)));
-    }
+    }*/
 }
