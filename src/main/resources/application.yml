@@ -7,4 +7,4 @@ spring:
       prod:
         - prod, common, redis
       test:
-        - test
+        - test, common, redis
