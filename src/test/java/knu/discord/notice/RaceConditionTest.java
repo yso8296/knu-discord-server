@@ -27,10 +27,10 @@ import java.util.concurrent.Executors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-/*@TestPropertySource(properties = {
-        "redis.host=localhost",
-        "redis.port=6379"
-})*/
+@TestPropertySource(properties = {
+        "spring.data.redis.host=localhost",
+        "spring.data.redis.port=6379"
+})
 @Testcontainers
 public class RaceConditionTest {
 
