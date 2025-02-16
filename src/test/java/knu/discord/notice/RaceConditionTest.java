@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.TestPropertySource;
@@ -20,10 +21,7 @@ import java.util.concurrent.Executors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-@TestPropertySource(properties = {
-        "redis.host=localhost",
-        "redis.port=6379"
-})
+@Import(RedisTestContainerConfig.class)
 public class RaceConditionTest {
 
     @Autowired
