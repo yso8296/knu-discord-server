@@ -22,12 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @TestPropertySource(properties = {
         "redis.host=localhost",
-        "redis.port=6379",
-        "spring.datasource.url=jdbc:h2:mem:discord",
-        "spring.datasource.driver-class-name=org.h2.Driver",
-        "spring.datasource.username=sa",
-        "spring.datasource.password=",
-        "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect"
+        "redis.port=6379"
 })
 public class RaceConditionTest {
 

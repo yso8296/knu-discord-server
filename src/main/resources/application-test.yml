@@ -1,16 +1,14 @@
 spring:
-  h2:
-    console:
-      enabled: true
-
-  datasource:
-    url: jdbc:h2:mem:discord
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-
+  # JPA 관련 설정
   jpa:
     hibernate:
       ddl-auto: create
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
+
+  # MySQL 데이터베이스 연결 설정
+  datasource:
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:mysql:8.0.33://localhost:3306/testdb
+    username: test
+    password: test
