@@ -1,16 +1,16 @@
-spring:
-  # JPA 관련 설정
-  jpa:
-    hibernate:
-      ddl-auto: create
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
-
-  # MySQL 데이터베이스 연결 설정
-  datasource:
-    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
-    url: jdbc:tc:mysql:8.0.33://localhost:3306/testdb
-    username: test
-    password: test
+#spring:
+#  # JPA 관련 설정
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQLDialect
+#
+#  # MySQL 데이터베이스 연결 설정
+#  datasource:
+#    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+#    url: jdbc:tc:mysql:8.0.33://localhost:3306/testdb
+#    username: test
+#    password: test
