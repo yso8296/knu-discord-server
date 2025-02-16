@@ -9,8 +9,7 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-//@Testcontainers
-@Configuration
+@Testcontainers
 public class RedisTestContainerConfig {
 
     /*private static final String REDIS_IMAGE = "redis:7.0.8-alpine";
