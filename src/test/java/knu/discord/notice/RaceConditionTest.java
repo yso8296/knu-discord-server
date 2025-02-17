@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @Testcontainers
-@ActiveProfiles("test")
 public class RaceConditionTest {
 
     @Container
