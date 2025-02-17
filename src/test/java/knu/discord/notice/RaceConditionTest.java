@@ -29,10 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @Testcontainers
-@TestPropertySource(properties = {
-        "spring.data.redis.host=localhost",
-        "spring.data.redis.port=6379"
-})
 public class RaceConditionTest {
 
     @Container
@@ -41,8 +37,8 @@ public class RaceConditionTest {
 
     @DynamicPropertySource
     static void properties(DynamicPropertyRegistry registry) {
-        registry.add("REDIS_HOST", redisContainer::getHost);
-        registry.add("REDIS_PORT", () -> redisContainer.getMappedPort(6379));
+        registry.add("spring.data.redis.host", redisContainer::getHost);
+        registry.add("spring.data.redis.port", () -> redisContainer.getMappedPort(6379).toString());
     }
 
     @Autowired
