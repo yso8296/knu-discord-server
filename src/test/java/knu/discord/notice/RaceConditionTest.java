@@ -28,15 +28,12 @@ import java.util.concurrent.Executors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-@ActiveProfiles("test")
 @Testcontainers
+@TestPropertySource(properties = {
+        "spring.data.redis.host=localhost",
+        "spring.data.redis.port=6379"
+})
 public class RaceConditionTest {
-
-    /*@Container
-    private static final MySQLContainer<?> mysqlContainer = new MySQLContainer<>("mysql:8.0.33")
-            .withDatabaseName("testdb")
-            .withUsername("testuser")
-            .withPassword("testpass");*/
 
     @Container
     private static final GenericContainer<?> redisContainer = new GenericContainer<>("redis:6.2-alpine")
