@@ -1,30 +1,29 @@
 FROM eclipse-temurin:17-jdk-alpine
 
-# ⭐ 'ARG' 예약어를 통해 인자로 전달 받아야 한다.
-ARG CLIENT_ID \
-    REDIRECT_URL \
-    DB_URL \
-    DB_USERNAME \
-    DB_PASSWORD \
-    REDIS_HOST  \
-    REDIS_PORT \
-    COM_URL \
-    CLS_URL \
-    CLG_URL \
-    JOB_URL \
-    SCH_URL \
-    EVT_URL \
-    ETC_URL \
-    WEEKLY_URL
+# 'ARG' 예약어를 통해 인자로 전달 받아야 한다.
+ARG CLIENT_ID
+ARG REDIRECT_URL
+ARG DB_URL
+ARG DB_USERNAME
+ARG DB_PASSWORD
+ARG REDIS_HOST
+ARG REDIS_PORT
+ARG COM_URL
+ARG CLS_URL
+ARG CLG_URL
+ARG JOB_URL
+ARG SCH_URL
+ARG EVT_URL
+ARG ETC_URL
+ARG WEEKLY_URL
 
-
-# ⭐ 'ENV' 예약어를 통해 전달받은 값을 실제 값과 매칭시켜야 한다.
+# 'ENV' 예약어를 통해 전달받은 값을 실제 값과 매칭시켜야 한다.
 ENV REDIRECT_URL=${REDIRECT_URL} \
     DB_URL=${DB_URL} \
     DB_USERNAME=${DB_USERNAME} \
     DB_PASSWORD=${DB_PASSWORD} \
     REDIS_HOST=${REDIS_HOST} \
-    REDIS_PORT=${REDIS_PORT}
+    REDIS_PORT=${REDIS_PORT} \
     COM_URL=${COM_URL} \
     CLS_URL=${CLS_URL} \
     CLG_URL=${CLG_URL} \
@@ -33,9 +32,7 @@ ENV REDIRECT_URL=${REDIRECT_URL} \
     EVT_URL=${EVT_URL} \
     ETC_URL=${ETC_URL} \
     WEEKLY_URL=${WEEKLY_URL} \
-
-
-ENV SPRING_PROFILES_ACTIVE=prod
+    SPRING_PROFILES_ACTIVE=prod
 
 COPY ./build/libs/*SNAPSHOT.jar project.jar
 
