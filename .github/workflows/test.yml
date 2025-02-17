@@ -11,6 +11,11 @@ jobs:
 
     # set up java
     steps:
+      - name: Set up environment variables
+        run: |
+          echo "REDIS_HOST=localhost" >> $GITHUB_ENV
+          echo "REDIS_PORT=6379" >> $GITHUB_ENV
+
       - name: Github Repository에 올린 파일들을 불러오기
         uses: actions/checkout@v4
 

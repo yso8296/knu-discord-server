@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: test
+    active: local
     group:
       local:
         - local, common, redis
