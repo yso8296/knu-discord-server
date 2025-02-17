@@ -26,7 +26,7 @@ public final class NoticeUtil {
         );
 
         Map<String, Object> payload = Map.of(
-                "content", ":loudspeaker: NEW",
+                "content", "\uD83D\uDCE2 NEW",
                 "embeds", new Map[]{embed}
         );
 
