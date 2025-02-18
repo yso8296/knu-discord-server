@@ -15,11 +15,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfig {
 
-    @Value("${spring.data.redis.host}")
-    private String host;
+    //@Value("${spring.data.redis.host}")
+    private String host = System.getenv("REDIS_HOST");
 
-    @Value("${spring.data.redis.port}")
-    private int port;
+    //@Value("${spring.data.redis.port}")
+    private int port = Integer.parseInt(System.getenv("REDIS_PORT"));
 
     private static final String REDISSON_HOST_PREFIX = "redis://";
 
