@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   server:
     image: ${DOCKERHUB_USERNAME}/knu-notice-server:latest
