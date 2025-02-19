@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  server:
+    image: ${DOCKERHUB_USERNAME}/knu-notice-server:latest
+    container_name: knu-notice-server-green
+    ports:
+      - "8082:8080"
+    env_file:
+      - .env
+    restart: always

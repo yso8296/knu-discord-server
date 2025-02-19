@@ -1,19 +1,19 @@
-services:
-  server:
-    image: ${DOCKERHUB_USERNAME}/knu-notice-server:latest
-    ports:
-      - "8080:8080"
-    env_file:
-      - .env
-#    depends_on:
-#      redis:
-#        condition: service_healthy
-
-#  redis:
-#    image: redis:latest
+#services:
+#  server:
+#    image: ${DOCKERHUB_USERNAME}/knu-notice-server:latest
 #    ports:
-#      - "6379:6379"
-#    healthcheck:
-#      test: [ "CMD", "redis-cli", "ping" ]
-#      interval: 5s
-#      retries: 10
+#      - "8080:8080"
+#    env_file:
+#      - .env
+##    depends_on:
+##      redis:
+##        condition: service_healthy
+#
+##  redis:
+##    image: redis:latest
+##    ports:
+##      - "6379:6379"
+##    healthcheck:
+##      test: [ "CMD", "redis-cli", "ping" ]
+##      interval: 5s
+##      retries: 10
