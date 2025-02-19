@@ -99,10 +99,14 @@ jobs:
                 if curl -s http://127.0.0.1:8081/actuator/health | grep -q '"status":"UP"'; then
                     echo "Blue 환경 헬스 체크 성공. Nginx를 Blue 환경으로 전환합니다."
                     sudo sed -i 's/proxy_pass http:\/\/app_green;/proxy_pass http:\/\/app_blue;/' /etc/nginx/sites-available/default || true
+                    echo "되냐"
                     sudo nginx -t && sudo systemctl reload nginx
+                    echo "되냐2"
                     docker-compose -f docker-compose.green.yml down
+                    echo "되냐3"
                 else
                     echo "Blue 환경 헬스 체크 실패. 배포를 롤백합니다."
+                    echo "되냐4"
                     docker-compose -f docker-compose.blue.yml down
                     exit 1
                 fi
