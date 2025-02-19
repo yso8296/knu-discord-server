@@ -34,7 +34,7 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: 테스트 및 빌드하기x
+      - name: 테스트 및 빌드하기
         run: |
           chmod +x ./gradlew
           ./gradlew clean build -x test
@@ -76,37 +76,34 @@ jobs:
             # 현재 활성화된 환경 확인 (예: blue 환경이 실행 중이면 container 이름에 "blue" 포함)
             if docker ps --filter "name=knu-notice-server-blue" --format "{{.Names}}" | grep -q "knu-notice-server-blue"; then
                 echo "Blue 환경이 현재 활성화되어 있습니다. Green 환경으로 배포합니다."
-                docker-compose -f docker-compose.green.yml down || true
-                docker-compose -f docker-compose.green.yml pull || true
-                docker-compose -f docker-compose.green.yml up -d
+                docker-compose -f docker-compose.green.yml -p knu-notice-green down || true
+                docker-compose -f docker-compose.green.yml -p knu-notice-green pull || true
+                docker-compose -f docker-compose.green.yml -p knu-notice-green up -d
                 sleep 30
                 if curl -s http://127.0.0.1:8082/actuator/health | grep -q '"status":"UP"'; then
                     echo "Green 환경 헬스 체크 성공. Nginx를 Green 환경으로 전환합니다."
                     sudo sed -i 's/proxy_pass http:\/\/app_blue;/proxy_pass http:\/\/app_green;/' /etc/nginx/sites-available/default
                     sudo nginx -t && sudo systemctl reload nginx
-                    docker-compose -f docker-compose.blue.yml down || true
+                    docker-compose -f docker-compose.blue.yml -p knu-notice-blue down || true
                 else
                     echo "Green 환경 헬스 체크 실패. 배포를 롤백합니다."
-                    docker-compose -f docker-compose.green.yml down
+                    docker-compose -f docker-compose.green.yml -p knu-notice-green down
                     exit 1
                 fi
             else
                 echo "Green 환경이 현재 활성화되어 있거나 Blue 환경이 비활성 상태입니다. Blue 환경으로 배포합니다."
-                docker-compose -f docker-compose.blue.yml down || true
-                docker-compose -f docker-compose.blue.yml pull || true
-                docker-compose -f docker-compose.blue.yml up -d
+                docker-compose -f docker-compose.blue.yml -p knu-notice-blue down || true
+                docker-compose -f docker-compose.blue.yml -p knu-notice-blue pull || true
+                docker-compose -f docker-compose.blue.yml -p knu-notice-blue up -d
                 sleep 30
                 if curl -s http://127.0.0.1:8081/actuator/health | grep -q '"status":"UP"'; then
                     echo "Blue 환경 헬스 체크 성공. Nginx를 Blue 환경으로 전환합니다."
                     sudo sed -i 's/proxy_pass http:\/\/app_green;/proxy_pass http:\/\/app_blue;/' /etc/nginx/sites-available/default || true
                     sudo nginx -t && sudo systemctl reload nginx
-                    docker compose -f docker-compose.green.yml down
+                    docker-compose -f docker-compose.green.yml -p knu-notice-green down
                 else
                     echo "Blue 환경 헬스 체크 실패. 배포를 롤백합니다."
-                    docker compose -f docker-compose.blue.yml down
+                    docker-compose -f docker-compose.blue.yml -p knu-notice-blue down
                     exit 1
                 fi
             fi
-          
-      
-       
