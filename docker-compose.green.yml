@@ -1,5 +1,5 @@
 services:
-  server:
+  serverr:
     image: ${DOCKERHUB_USERNAME}/knu-notice-server:latest
     container_name: knu-notice-server-green
     ports:
