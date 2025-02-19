@@ -78,7 +78,7 @@ jobs:
                 echo "Blue 환경이 현재 활성화되어 있습니다. Green 환경으로 배포합니다."
                 docker-compose -f docker-compose.green.yml down || true
                 docker-compose -f docker-compose.green.yml pull || true
-                docker-compose -f docker-compose.green.yml up -d --remove-orphans
+                docker-compose -f docker-compose.green.yml up -d --remove-orphans --force-recreate
                 sleep 30
                 if curl -s http://127.0.0.1:8082/actuator/health | grep -q '"status":"UP"'; then
                     echo "Green 환경 헬스 체크 성공. Nginx를 Green 환경으로 전환합니다."
@@ -94,7 +94,7 @@ jobs:
                 echo "Green 환경이 현재 활성화되어 있거나 Blue 환경이 비활성 상태입니다. Blue 환경으로 배포합니다."
                 docker-compose -f docker-compose.blue.yml down || true
                 docker-compose -f docker-compose.blue.yml pull || true
-                docker-compose -f docker-compose.blue.yml up -d --remove-orphans
+                docker-compose -f docker-compose.blue.yml up -d --remove-orphans --force-recreate
                 sleep 30
                 if curl -s http://127.0.0.1:8081/actuator/health | grep -q '"status":"UP"'; then
                     echo "Blue 환경 헬스 체크 성공. Nginx를 Blue 환경으로 전환합니다."
