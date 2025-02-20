@@ -8,6 +8,4 @@ services:
       - .env
     restart: always
 
-networks:
-  green_network:
-    driver: bridge
+

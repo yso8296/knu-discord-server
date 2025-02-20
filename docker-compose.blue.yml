@@ -8,6 +8,3 @@ services:
       - .env
     restart: always
 
-networks:
-  blue_network:
-    driver: bridge
