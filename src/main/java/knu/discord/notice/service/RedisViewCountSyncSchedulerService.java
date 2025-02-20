@@ -2,6 +2,7 @@ package knu.discord.notice.service;
 
 import knu.discord.notice.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
+import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class RedisViewCountSyncSchedulerService {
      * Redis에 저장된 키 패턴은 "notice:{id}:views"
      */
     @Scheduled(fixedRate = 180_000)
+    @SchedulerLock(name = "syncViewCounts", lockAtMostFor = "PT30S")
     @Transactional
     public void syncViewCounts() {
         Set<String> keys = redisTemplate.keys("notice:*:views");

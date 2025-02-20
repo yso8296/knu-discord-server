@@ -6,6 +6,7 @@ import knu.discord.notice.Send;
 import knu.discord.notice.repository.NoticeRepository;
 import knu.discord.notice.util.NoticeUtil;
 import lombok.RequiredArgsConstructor;
+import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ public class NoticeSchedulerService {
      * 전송 후 send를 Y로 업데이트합니다.
      */
     @Scheduled(fixedRate = 300_000) // 300,000 ms = 5분
+    @SchedulerLock(name = "sendPendingNotices", lockAtMostFor = "PT30S")
     public void sendPendingNotices() {
         // send 값이 'N'인 공지사항 목록 조회
         List<Notice> pendingNotices = noticeRepository.findTop10BySendOrderByUploadDateAsc(Send.N);
