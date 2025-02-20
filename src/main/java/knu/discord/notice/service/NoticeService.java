@@ -23,7 +23,7 @@ public class NoticeService {
     private final NoticeRepository noticeRepository;
     private final RedisTemplate<String, String> redisTemplate;
 
-    //@Transactional
+    @Transactional
     @RedissonLock(value = "#noticeId")
     public NoticeResponse.Link processNoticeRedirect(Long noticeId, HttpServletRequest request) {
         Notice notice = noticeRepository.findById(noticeId)
