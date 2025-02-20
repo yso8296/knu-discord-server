@@ -40,8 +40,7 @@ public class NoticeService {
             redisTemplate.opsForValue().increment(viewKey, 1);
             redisTemplate.opsForValue().set(ipKey, "1", 24, TimeUnit.HOURS);
         }*/
-        redisTemplate.opsForValue().increment(viewKey, 1);
-
+        noticeRepository.updateViewCount(id, 1);
         String safeLink = notice.getLink().replace(">", "%3E");
 
         return NoticeResponse.Link.from(safeLink);

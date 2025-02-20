@@ -20,7 +20,7 @@ public class RedisViewCountSyncSchedulerService {
      * 3분마다 Redis에 저장된 조회수를 DB에 반영합니다.
      * Redis에 저장된 키 패턴은 "notice:{id}:views"
      */
-    @Scheduled(fixedRate = 180_000)
+    /*@Scheduled(fixedRate = 180_000)
     @Transactional
     public void syncViewCounts() {
         Set<String> keys = redisTemplate.keys("notice:*:views");
@@ -47,5 +47,5 @@ public class RedisViewCountSyncSchedulerService {
                 }
             }
         }
-    }
+    }*/
 }
