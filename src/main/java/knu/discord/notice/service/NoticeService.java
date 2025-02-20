@@ -23,7 +23,7 @@ public class NoticeService {
     private final NoticeRepository noticeRepository;
     private final RedisTemplate<String, String> redisTemplate;
 
-    @Transactional
+    //@Transactional
     @RedissonLock(value = "#noticeId")
     public NoticeResponse.Link processNoticeRedirect(Long noticeId, HttpServletRequest request) {
         Notice notice = noticeRepository.findById(noticeId)
@@ -35,12 +35,12 @@ public class NoticeService {
         String viewKey = "notice:" + noticeId + ":views";
 
         // IP 키가 존재하지 않으면 조회수 증가
-        /*Boolean exists = redisTemplate.hasKey(ipKey);
+        Boolean exists = redisTemplate.hasKey(ipKey);
         if (Boolean.FALSE.equals(exists)) {
             redisTemplate.opsForValue().increment(viewKey, 1);
             redisTemplate.opsForValue().set(ipKey, "1", 24, TimeUnit.HOURS);
-        }*/
-        noticeRepository.updateViewCount(noticeId, 1);
+        }
+
         String safeLink = notice.getLink().replace(">", "%3E");
 
         return NoticeResponse.Link.from(safeLink);
