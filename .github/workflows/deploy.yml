@@ -73,6 +73,10 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
+            echo "이중화 서버 실행"
+            docker-compose -f docker-compose.extra.yml down || true
+            docker-compose -f docker-compose.extra.yml pull || true
+            docker-compose -f docker-compose.extra.yml up -d 
             # 현재 활성화된 환경 확인 (예: blue 환경이 실행 중이면 container 이름에 "blue" 포함)
             if docker ps --filter "name=knu-notice-server-blue" --format "{{.Names}}" | grep -q "knu-notice-server-blue"; then
                 echo "Blue 환경이 현재 활성화되어 있습니다. Green 환경으로 배포합니다."

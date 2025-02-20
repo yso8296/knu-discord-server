@@ -1,0 +1,9 @@
+services:
+  extra:
+    image: ${DOCKERHUB_USERNAME}/knu-notice-server:latest
+    container_name: knu-notice-server-extra
+    ports:
+      - "8083:8080"
+    env_file:
+      - .env
+    restart: always
