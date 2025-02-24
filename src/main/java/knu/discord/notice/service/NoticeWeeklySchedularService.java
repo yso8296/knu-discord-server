@@ -18,7 +18,7 @@ import java.util.List;
 public class NoticeWeeklySchedularService {
 
     private final NoticeRepository noticeRepository;
-    private final WebhookUrlProperties webhookUrlProperties;
+    private String weeklyUrl = System.getenv("WEEKLY_URL");
     //@Value("${server.redirect-url}")
     private String serverBaseUrl = System.getenv("REDIRECT_URL");
 
@@ -35,7 +35,7 @@ public class NoticeWeeklySchedularService {
             System.out.println("지난 주 인기 공지가 없습니다.");
             return;
         }
-        String weeklyWebHookUrl = webhookUrlProperties.getWeeklyUrl();
+        String weeklyWebHookUrl = weeklyUrl;
         NoticeUtil.sendNotice("주간 인기", "지난 주 인기 공지 TOP 3", "", LocalDate.now().toString(), "경북대학교 전자공학부", weeklyWebHookUrl);
         // 전송할 Discord 웹훅 주소 (예: 공지 전용 채널의 웹훅)
 
