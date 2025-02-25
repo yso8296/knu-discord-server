@@ -26,7 +26,7 @@ public class NoticeSchedulerService {
      * 5분마다 DB에서 send가 N인 공지사항을 조회하여 각 공지사항의 카테고리 웹훅으로 전송하고,
      * 전송 후 send를 Y로 업데이트합니다.
      */
-    @Scheduled(fixedRate = 300_000) // 300,000 ms = 5분
+    /*@Scheduled(fixedRate = 300_000) // 300,000 ms = 5분
     @SchedulerLock(name = "sendPendingNotices", lockAtMostFor = "PT30S")
     public void sendPendingNotices() {
         // send 값이 'N'인 공지사항 목록 조회
@@ -53,5 +53,5 @@ public class NoticeSchedulerService {
         }
         // DB에 업데이트 반영
         noticeRepository.saveAll(pendingNotices);
-    }
+    }*/
 }
