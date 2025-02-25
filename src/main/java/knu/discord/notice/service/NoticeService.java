@@ -41,7 +41,7 @@ public class NoticeService {
             redisTemplate.opsForValue().set(ipKey, "1", 24, TimeUnit.HOURS);
         }*/
 
-        redisTemplate.opsForValue().increment(viewKey, 1);
+        noticeRepository.updateViewCount(noticeId, 1);
 
         String safeLink = notice.getLink().replace(">", "%3E");
 
