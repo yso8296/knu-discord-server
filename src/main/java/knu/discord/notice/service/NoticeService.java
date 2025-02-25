@@ -34,12 +34,14 @@ public class NoticeService {
         String ipKey = "notice:" + noticeId + ":ip:" + ip;
         String viewKey = "notice:" + noticeId + ":views";
 
-        // IP 키가 존재하지 않으면 조회수 증가
+       /* // IP 키가 존재하지 않으면 조회수 증가
         Boolean exists = redisTemplate.hasKey(ipKey);
         if (Boolean.FALSE.equals(exists)) {
             redisTemplate.opsForValue().increment(viewKey, 1);
             redisTemplate.opsForValue().set(ipKey, "1", 24, TimeUnit.HOURS);
-        }
+        }*/
+
+        redisTemplate.opsForValue().increment(viewKey, 1);
 
         String safeLink = notice.getLink().replace(">", "%3E");
 
